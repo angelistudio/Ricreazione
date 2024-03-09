@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+  <title>Safety: Instructions for Emergency Situations, by Nick Montfort</title>
+
+    	<!-- Safety, Copyright 2019 Nick Montfort <nickm@nickm.com>
+
+    Copying and distribution of this file, with or without modification, are
+    permitted in any medium without royalty provided the copyright notice and
+    this notice are preserved. This file is offered as-is, without any warranty.
+
+    I wrote this text generator in Python on April 7, 2008, never distributed or
+    exhibited it, and just found it recently among older files. On September 15,
+    2019, I wrote this HTML/JavaScript implementation of the generator. In terms
+    of the way text is generated, this version functions exactly as does the
+    2008 Python program. The typography is different, as the Python program runs
+    in a terminal window.
+    -->
+
+    	<script>
+      const title = [
+        ['Operating the '],
+        ['', '', '', '', '', '', '', '', 'Suspected ', 'Pre-'],
+        ['Emergency ', 'Emergency ', 'Emergency ', 'Emergency ', 'Emergency ',
+         'Fire ', 'Tornado ', 'Bomb ', 'Crisis '],
+        ['Entrance', 'Artwork', 'Igniter', 'Accelerator', 'Hood', 'Precipice',
+         'Anchor', 'Station', 'Clearing', 'Semaphore']
+      ],
+      text = [
+        [' PUSH ',' PULL ',' ROTATE ',' REMOVE ',' SLIDE ',' DISENGAGE ',
+         ' RETRACT ',' EXTEND ',' BREAK ',' SNAP '],
+        ['RUBBER','ROD','HANDLE','GLASS','RAMPART','RAIL','WIRE','DOOR',
+         'CISTERN','ELEMENT'],
+        ['', '', '', '', '', '', '', ' FORCEFULLY', ' UP', ' DOWN']
+      ];
+
+      function choice(array) {
+				return array[~~(Math.random() * array.length)];
+      }
+
+      function instruct() {
+        var headline = "", n, instructions = "",
+          head_div = document.getElementById("headline"),
+          inst_div = document.getElementById("instructions");
+        for (var i = 0 ; i < 4 ; i++) { headline += choice(title[i]); }
+        head_div.innerHTML = headline;
+        n = 2 + ~~(Math.random() * 8); // Between 2 and 10 instructions
+        for (var i = 0 ; i < n ; i++) {
+          instructions += "<li>";
+          for (var j = 0 ; j < 3 ; j++) { instructions += choice(text[j]); }
+          instructions += "</li>";
+        }
+        inst_div.innerHTML = instructions;
+      }
+
+      function go() {
+        instruct();
+        setInterval(instruct, 5000);
+      }
+      </script>
+
+</head>
+<body onload=go() style="font-size:3.2vh; margin:7vh; font-family:sans-serif">
+  <h1 style="color:red; text-align:center">YOUR ATTENTION PLEASE</h1>
+  <h2 style="color:green; text-align:center">The following instructions are
+		important to your safety</h2>
+  <h1 id=headline style="display:flex; justify-content:center"></h1>
+  <div style="display:flex; justify-content:center">
+  <ol id=instructions></ol>
+  </div>
+</body>
+</html>
